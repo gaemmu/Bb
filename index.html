@@ -2,41 +2,158 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>เกมทายคำ</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Kanit', sans-serif;
+      background: linear-gradient(to right, #fceabb, #f8b500);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    h1 {
+      color: #fff;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 2px #00000055;
+    }
+
+    .game-box {
+      background-color: #fff8dc;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+
+    #hint {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: #444;
+    }
+
+    input {
+      width: 80%;
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #f4a261;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background-color: #2a9d8f;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #21867a;
+    }
+
+    .restart {
+      background-color: #e76f51;
+    }
+
+    .restart:hover {
+      background-color: #d45b3d;
+    }
+
+    #result, #attemptsLeft, #showAnswer {
+      margin-top: 15px;
+      font-size: 16px;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     <h1>เกมทายคำ</h1>
-    <p>ใบ้คำ: เป็นผลไม้สีเหลือง เปลือกหนา</p>
-    <input type="text" id="guessInput" placeholder="พิมพ์คำตอบที่นี่">
-    <button onclick="checkGuess()">ส่งคำตอบ</button>
-    <p id="result"></p>
+    <div class="game-box">
+      <p id="hint">ใบ้คำ: ...</p>
+      <input type="text" id="guessInput" placeholder="พิมพ์คำตอบที่นี่">
+      <button onclick="checkGuess()">ส่งคำตอบ</button>
+      <p id="result"></p>
+      <p id="attemptsLeft"></p>
+      <p id="showAnswer"></p>
+      <button class="restart" onclick="startGame()">เริ่มใหม่</button>
+    </div>
   </div>
 
-  <script src="script.js"></script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="th">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>เกมทายคำ</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="container">
-    <h1>เกมทายคำ</h1>
-    <p id="hint">ใบ้คำจะอยู่ตรงนี้</p>
-    <input type="text" id="guessInput" placeholder="พิมพ์คำตอบที่นี่">
-    <button onclick="checkGuess()">ส่งคำตอบ</button>
-    <p id="result"></p>
-    <p id="attemptsLeft"></p>
-    <button onclick="startGame()">เริ่มใหม่</button>
-  </div>
+  <script>
+    const words = [
+      { hint: "ผลไม้เปลือกเหลือง เนื้อหวาน", answer: "กล้วย" },
+      { hint: "สัตว์ที่มีงวง", answer: "ช้าง" },
+      { hint: "เครื่องดื่มสีดำ ดื่มตอนเช้า", answer: "กาแฟ" },
+      { hint: "สัตว์เลี้ยงแสนรู้ เห่าได้", answer: "สุนัข" },
+      { hint: "ของใช้ในห้องเรียน ใช้เขียน", answer: "ดินสอ" },
+      { hint: "ผลไม้เปลือกเขียว เนื้อแดง", answer: "แตงโม" }
+    ];
 
-  <script src="script.js"></script>
+    let currentAnswer = "";
+    let maxAttempts = 3;
+    let attemptsLeft = maxAttempts;
+
+    function startGame() {
+      const randomIndex = Math.floor(Math.random() * words.length);
+      const selected = words[randomIndex];
+
+      currentAnswer = selected.answer;
+      attemptsLeft = maxAttempts;
+
+      document.getElementById("hint").textContent = "ใบ้คำ: " + selected.hint;
+      document.getElementById("guessInput").value = "";
+      document.getElementById("result").textContent = "";
+      document.getElementById("attemptsLeft").textContent = `คุณมีโอกาสอีก ${attemptsLeft} ครั้ง`;
+      document.getElementById("showAnswer").textContent = "";
+    }
+
+    function checkGuess() {
+      const guess = document.getElementById("guessInput").value.trim();
+      const result = document.getElementById("result");
+
+      if (guess === "") {
+        result.textContent = "กรุณาพิมพ์คำตอบก่อน";
+        result.style.color = "orange";
+        return;
+      }
+
+      if (guess === currentAnswer) {
+        result.textContent = "ถูกต้อง! ยินดีด้วย!";
+        result.style.color = "green";
+        document.getElementById("attemptsLeft").textContent = "";
+        document.getElementById("showAnswer").textContent = "";
+      } else {
+        attemptsLeft--;
+
+        if (attemptsLeft > 0) {
+          result.textContent = "ผิด ลองอีกครั้ง!";
+          result.style.color = "red";
+          document.getElementById("attemptsLeft").textContent = `คุณมีโอกาสอีก ${attemptsLeft} ครั้ง`;
+        } else {
+          result.textContent = "หมดโอกาสแล้ว!";
+          result.style.color = "gray";
+          document.getElementById("attemptsLeft").textContent = "";
+          document.getElementById("showAnswer").textContent = `คำตอบที่ถูกคือ: "${currentAnswer}"`;
+        }
+      }
+
+      document.getElementById("guessInput").value = "";
+    }
+
+    startGame();
+  </script>
 </body>
 </html>
