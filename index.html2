@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dear You</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 50px;
+      background-color: #fff0f5;
+      color: #333;
+    }
+    h1 {
+      font-size: 2.5em;
+      color: #d63384;
+    }
+    h6 {
+      font-style: italic;
+      color: #555;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 15px;
+      font-size: 1em;
+      background-color: #f8c9dc;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      
+      background-color: #f2a8c5;
+    }
+    .message {
+      margin-top: 30px;
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <h1>dear you bb</h1>
+  <p>i love you so much thank you for evrt Ily to the moon and around the world and planet</p>
+  <h6>love you from gaem</h6>
+
+  <div>
+    <button>i'm here</button>
+    <button>3 m with u baby</button>
+    <button>รักเธอมากๆ เลยค่ะ ขอบคุณมากๆ เลย</button>
+  </div>
+
+  <div class="message">
+    ขอให้รู้ไว้ว่า รักยูที่สุด❤️
+  </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For You</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 50px;
+      background-color: #e6f7ff;
+      color: #333;
+    }
+    h2 {
+      font-size: 2em;
+      color: #3399ff;
+    }
+    p {
+      font-size: 1.2em;
+    }
+    .emoji {
+      font-size: 2em;
+    }
+  </style>
+</head>
+<body>
+  <h2>ยังมีอะไรจะบอกอีกนะ</h2>
+  <p>ขอบคุณที่อยู่ด้วยกันตลอด ขอบคุณที่เข้าใจ ขอบคุณที่เป็น "คุณ"</p>
+  <p class="emoji">รักนะ jub jub kub</p>
+</body>
+</html>
