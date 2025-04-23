@@ -117,8 +117,8 @@
     <div class="quiz-question">
       <p>ไอชอบกินอะไรที่สุด?</p>
       <button onclick="checkAnswer(this, true)">ชาบู</button>
-      <button onclick="checkAnswer(this, false)">พิซซ่า</button>
-      <button onclick="checkAnswer(this, false)">ซูชิ</button>
+      <button onclick="checkAnswer(this, false)">ผัก</button>
+      <button onclick="checkAnswer(this, false)">ซูชิที่มีผัก</button>
     </div>
     <div class="quiz-question">
       <p>เรารู้จักกันวันไหน?</p>
@@ -132,7 +132,8 @@
   <section id="diary">
     <h2>สมุดบันทึกความรัก</h2>
     <p>เขียนสิ่งที่อยากบอกกันวันนี้</p>
-    <textarea placeholder="รักยูมากมาก บางทีอาจจะไม่ค่อยแสดงออก แต่ไอมีแค่ยูจริงๆในหัวใจ คำตอบไอก็คือยูนะ ขอบคุณที่ยังให้โอกาสด้วยไอก็ยังเป็นเบบี๋อยู่ทนหน่อยอีกแปปนึงก็โตทันยูแล้วคับ♥️"></textarea>
+    <textarea placeholder="รักยูมากมาก บางทีอาจจะไม่ค่อยแสดงออก แต่ไอมีแค่ยูจริงๆในหัวใจ คำตอบไอก็คือยูนะ ขอบคุณที่ยังให้โอกาสด้วยไอก็ยังเป็นเบบี๋อยู่ทนหน่อยอีกแปปนึงก็โตทันยูแล้วคับ♥️
+      i love you to the moon and back Thank you :p"></textarea>
   </section>
 
   <section id="countdown">
@@ -161,7 +162,7 @@
       const total = document.querySelectorAll('.quiz-question').length;
       const answered = document.querySelectorAll('.answered').length;
       if (answered === total) {
-        document.getElementById('quiz-result').innerText = `คุณตอบถูก ${correctCount}/${total} ข้อ น่ารักจังเลย!`;
+        document.getElementById('quiz-result').innerText = `คุณตอบถูก ${correctCount}/${total} ข้อ น่ารักที่สุดคับแฟน`;
       }
     }
 
