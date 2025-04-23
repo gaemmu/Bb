@@ -95,16 +95,16 @@
   </style>
 </head>
 <body>
-  <header>เว็บไซต์ของเรา</header>
+  <header>you and me</header>
   <nav>
     <button onclick="showSection('gallery')">แกลเลอรี่</button>
     <button onclick="showSection('quiz')">เกมทายใจ</button>
     <button onclick="showSection('diary')">สมุดความรัก</button>
-    <button onclick="showSection('countdown')">นับวันครบรอบ</button>
+    <button onclick="showSection('countdown')">รู้จักกันมากี่ปีแล้ว</button>
   </nav>
 
   <section id="gallery" class="active">
-    <h2>แกลเลอรี่รูปคู่</h2>
+    <h2>แกลเลอรี่รูปคู่(ยังไม่ได้ทำลิ้งรูป)</h2>
     <div class="gallery">
       <img src="https://pin.it/2VrBU9yPK/200x200?text=รูป1" alt="รูปคู่1" />
       <img src="https://pin.it/4gpRR2A2C/200x200?text=รูป2" alt="รูปคู่2" />
@@ -115,7 +115,7 @@
   <section id="quiz">
     <h2>เกมทายใจ</h2>
     <div class="quiz-question">
-      <p>แฟนเราชอบกินอะไรที่สุด?</p>
+      <p>ไอชอบกินอะไรที่สุด?</p>
       <button onclick="checkAnswer(this, true)">ชาบู</button>
       <button onclick="checkAnswer(this, false)">พิซซ่า</button>
       <button onclick="checkAnswer(this, false)">ซูชิ</button>
@@ -123,7 +123,7 @@
     <div class="quiz-question">
       <p>เรารู้จักกันวันไหน?</p>
       <button onclick="checkAnswer(this, false)">1 ม.ค.</button>
-      <button onclick="checkAnswer(this, true)">14 ก.พ.</button>
+      <button onclick="checkAnswer(this, true)">5 ม.ค.</button>
       <button onclick="checkAnswer(this, false)">25 ธ.ค.</button>
     </div>
     <p id="quiz-result" style="font-weight: bold;"></p>
@@ -132,12 +132,12 @@
   <section id="diary">
     <h2>สมุดบันทึกความรัก</h2>
     <p>เขียนสิ่งที่อยากบอกกันวันนี้</p>
-    <textarea placeholder="รักยูมากมาก บางทีอาจจะไม่ค่อยแสดงออก แต่ไอมีแค่ยูจริงๆในหัวใจ คำตอบไอก็คือยูนะ"></textarea>
+    <textarea placeholder="รักยูมากมาก บางทีอาจจะไม่ค่อยแสดงออก แต่ไอมีแค่ยูจริงๆในหัวใจ คำตอบไอก็คือยูนะ ขอบคุณที่ยังให้โอกาสด้วยไอก็ยังเป็นเบบี๋อยู่ทนหน่อยอีกแปปนึงก็โตทันยูแล้วคับ♥️"></textarea>
   </section>
 
   <section id="countdown">
-    <h2>นับวันครบรอบ</h2>
-    <p>เรารู้จักกันมาครบ1ปี4เดือนแล้ะ: <input type="date" id="anniversary" onchange="calculateDays()" /></p>
+    <h2>นับวันที่รู้จัก</h2>
+    <p>เรารู้จักกันมากี่ีปีกี่เดือนคับ: <input type="date" id="anniversary" onchange="calculateDays()" /></p>
     <div class="counter" id="day-counter"></div>
   </section>
 
@@ -172,7 +172,7 @@
       const today = new Date();
       const diffTime = Math.abs(today - start);
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      document.getElementById('day-counter').innerText = `เราอยู่ด้วยกันมาแล้ว ${diffDays} วัน`;
+      document.getElementById('day-counter').innerText = `เรารู้จักกันมาแล้ว ${diffDays} วัน`;
     }
   </script>
 </body>
