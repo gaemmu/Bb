@@ -1,159 +1,179 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <title>Guess the character</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>เว็บไซต์ของยู&มี</title>
   <style>
     body {
       margin: 0;
-      padding: 0;
-      font-family: 'Kanit', sans-serif;
-      background: linear-gradient(to right, #fceabb, #f8b500);
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: #ffe6f0;
+      color: #333;
     }
 
-    .container {
+    header {
+      background: #ff99cc;
+      color: white;
       text-align: center;
+      padding: 1.5rem;
+      font-size: 1.8rem;
+      animation: fadeIn 2s ease;
     }
 
-    h1 {
-      color: #fff;
-      margin-bottom: 20px;
-      text-shadow: 1px 1px 2px #00000055;
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      background: #ffcce0;
+      padding: 1rem;
     }
 
-    .game-box {
-      background-color: #fff8dc;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      width: 300px;
-    }
-
-    #hint {
-      font-size: 18px;
-      margin-bottom: 15px;
-      color: #444;
-    }
-
-    input {
-      width: 80%;
-      padding: 10px;
-      font-size: 16px;
-      border: 2px solid #f4a261;
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
-
-    button {
-      background-color: #2a9d8f;
+    nav button {
+      background: #ff4da6;
       color: white;
       border: none;
       padding: 10px 20px;
-      font-size: 16px;
-      border-radius: 8px;
+      border-radius: 20px;
       cursor: pointer;
-      margin-top: 10px;
+      font-size: 1rem;
+      transition: transform 0.3s;
     }
 
-    button:hover {
-      background-color: #21867a;
+    nav button:hover {
+      transform: scale(1.1);
     }
 
-    .restart {
-      background-color: #e76f51;
+    section {
+      display: none;
+      padding: 2rem;
+      animation: fadeIn 1s ease;
     }
 
-    .restart:hover {
-      background-color: #d45b3d;
+    section.active {
+      display: block;
     }
 
-    #result, #attemptsLeft, #showAnswer {
-      margin-top: 15px;
-      font-size: 16px;
+    .gallery img {
+      width: 100%;
+      max-width: 200px;
+      border-radius: 10px;
+      margin: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .quiz-question {
+      margin-bottom: 1rem;
+    }
+
+    textarea {
+      width: 100%;
+      height: 150px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      resize: vertical;
+      font-size: 1rem;
+    }
+
+    .counter {
+      font-size: 2rem;
+      margin-top: 1rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      nav button {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Guess the character</h1>
-    <div class="game-box">
-      <p id="hint">Guess the word: ...</p>
-      <input type="text" id="guessInput" placeholder="Type yoru answer here">
-      <button onclick="checkGuess()">Submit Answe</button>
-      <p id="result"></p>
-      <p id="attemptsLeft"></p>
-      <p id="showAnswer"></p>
-      <button class="restart" onclick="startGame()">Start again</button>
+  <header>เว็บไซต์ของเรา</header>
+  <nav>
+    <button onclick="showSection('gallery')">แกลเลอรี่</button>
+    <button onclick="showSection('quiz')">เกมทายใจ</button>
+    <button onclick="showSection('diary')">สมุดความรัก</button>
+    <button onclick="showSection('countdown')">นับวันครบรอบ</button>
+  </nav>
+
+  <section id="gallery" class="active">
+    <h2>แกลเลอรี่รูปคู่</h2>
+    <div class="gallery">
+      <img src="https://pin.it/2VrBU9yPK/200x200?text=รูป1" alt="รูปคู่1" />
+      <img src="https://pin.it/4gpRR2A2C/200x200?text=รูป2" alt="รูปคู่2" />
+      <img src="https://pin.it/iyhsL1bGD/200x200?text=รูป3" alt="รูปคู่3" />
     </div>
-  </div>
+  </section>
+
+  <section id="quiz">
+    <h2>เกมทายใจ</h2>
+    <div class="quiz-question">
+      <p>แฟนเราชอบกินอะไรที่สุด?</p>
+      <button onclick="checkAnswer(this, true)">ชาบู</button>
+      <button onclick="checkAnswer(this, false)">พิซซ่า</button>
+      <button onclick="checkAnswer(this, false)">ซูชิ</button>
+    </div>
+    <div class="quiz-question">
+      <p>เรารู้จักกันวันไหน?</p>
+      <button onclick="checkAnswer(this, false)">1 ม.ค.</button>
+      <button onclick="checkAnswer(this, true)">14 ก.พ.</button>
+      <button onclick="checkAnswer(this, false)">25 ธ.ค.</button>
+    </div>
+    <p id="quiz-result" style="font-weight: bold;"></p>
+  </section>
+
+  <section id="diary">
+    <h2>สมุดบันทึกความรัก</h2>
+    <p>เขียนสิ่งที่อยากบอกกันวันนี้</p>
+    <textarea placeholder="รักยูมากมาก บางทีอาจจะไม่ค่อยแสดงออก แต่ไอมีแค่ยูจริงๆในหัวใจ คำตอบไอก็คือยูนะ"></textarea>
+  </section>
+
+  <section id="countdown">
+    <h2>นับวันครบรอบ</h2>
+    <p>เรารู้จักกันมาครบ1ปี4เดือนแล้ะ: <input type="date" id="anniversary" onchange="calculateDays()" /></p>
+    <div class="counter" id="day-counter"></div>
+  </section>
 
   <script>
-    const words = [
-      { hint: "Tallest in the house", answer: "kjell" },
-      { hint: "Smelly fart and talk so much", answer: "bee" },
-      { hint: "Sleep and eat ", answer: "Spyzy" },
-      { hint: "play game and like wacht movie", answer: "gaemmy" },
-      { hint: "Easily startled", answer: "grand ma" },
-      { hint: "Huh? what you say?", answer: "grand pa" }
-    ];
-
-    let currentAnswer = "";
-    let maxAttempts = 2;
-    let attemptsLeft = maxAttempts;
-
-    function startGame() {
-      const randomIndex = Math.floor(Math.random() * words.length);
-      const selected = words[randomIndex];
-
-      currentAnswer = selected.answer;
-      attemptsLeft = maxAttempts;
-
-      document.getElementById("hint").textContent = "Guess the word: " + selected.hint;
-      document.getElementById("guessInput").value = "";
-      document.getElementById("result").textContent = "";
-      document.getElementById("attemptsLeft").textContent = `you have a chance ${attemptsLeft} time`;
-      document.getElementById("showAnswer").textContent = "";
+    function showSection(id) {
+      document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
     }
 
-    function checkGuess() {
-      const guess = document.getElementById("guessInput").value.trim();
-      const result = document.getElementById("result");
-
-      if (guess === "") {
-        result.textContent = "Plaease type your answer";
-        result.style.color = "orange";
-        return;
-      }
-
-      if (guess === currentAnswer) {
-        result.textContent = "you got it broo slay";
-        result.style.color = "green";
-        document.getElementById("attemptsLeft").textContent = "";
-        document.getElementById("showAnswer").textContent = "";
+    let correctCount = 0;
+    function checkAnswer(button, isCorrect) {
+      if (button.classList.contains("answered")) return;
+      button.classList.add("answered");
+      if (isCorrect) {
+        button.style.background = "#66cc99";
+        correctCount++;
       } else {
-        attemptsLeft--;
-
-        if (attemptsLeft > 0) {
-          result.textContent = "wrong";
-          result.style.color = "red";
-          document.getElementById("attemptsLeft").textContent = `you have a chance ${attemptsLeft} chance`;
-        } else {
-          result.textContent = "No chance anymore!";
-          result.style.color = "gray";
-          document.getElementById("attemptsLeft").textContent = "";
-          document.getElementById("showAnswer").textContent = `The correct answer is: "${currentAnswer}"`;
-        }
+        button.style.background = "#ff6666";
       }
 
-      document.getElementById("guessInput").value = "";
+      const total = document.querySelectorAll('.quiz-question').length;
+      const answered = document.querySelectorAll('.answered').length;
+      if (answered === total) {
+        document.getElementById('quiz-result').innerText = `คุณตอบถูก ${correctCount}/${total} ข้อ น่ารักจังเลย!`;
+      }
     }
 
-    startGame();
+    function calculateDays() {
+      const dateInput = document.getElementById('anniversary').value;
+      if (!dateInput) return;
+      const start = new Date(dateInput);
+      const today = new Date();
+      const diffTime = Math.abs(today - start);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      document.getElementById('day-counter').innerText = `เราอยู่ด้วยกันมาแล้ว ${diffDays} วัน`;
+    }
   </script>
 </body>
 </html>
