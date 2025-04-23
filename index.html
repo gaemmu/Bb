@@ -2,7 +2,7 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <title>เกมทายคาแรคเตอร์เพื่อนใครตอบผิดเป็นเก</title>
+  <title>Guess the character</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -80,26 +80,26 @@
 </head>
 <body>
   <div class="container">
-    <h1>เกมทายคำจ้า</h1>
+    <h1>Guess the character</h1>
     <div class="game-box">
-      <p id="hint">ใบ้คำ: ...</p>
+      <p id="hint">ใบ้คำGuess the word: ...</p>
       <input type="text" id="guessInput" placeholder="พิมพ์คำตอบที่นี่">
-      <button onclick="checkGuess()">ส่งคำตอบครับหมุอู้ด</button>
+      <button onclick="checkGuess()">Submit Answe</button>
       <p id="result"></p>
       <p id="attemptsLeft"></p>
       <p id="showAnswer"></p>
-      <button class="restart" onclick="startGame()">เริ่มใหม่เจ้ากาก</button>
+      <button class="restart" onclick="startGame()">Start again</button>
     </div>
   </div>
 
   <script>
     const words = [
-      { hint: "ใส่แว่นตาพูดมากกินแต่ขนมตัวเกือบสูง ", answer: "พอใจ" },
-      { hint: "วีนอยู่อย่าง ไม่ขาดน้ำตาลก็ขาดแล็คโตส", answer: "วุ้นเส้น" },
-      { hint: "เป็นทอมที่หล่อที่สุดในโลก แอ้บแมนแต่กระเทยมาก", answer: "แก้มคนหล่อ" },
-      { hint: "พาเกดไปร้านเภสัชใกล้ฉัน", answer: "เอิ้น" },
-      { hint: "วันๆตัดแต่คลิปไม่นอนก็เล่นไม่เล่นก็นอน", answer: "อามี่" },
-      { hint: "ชื่อจริงแก้มเขียนยังไง", answer: "ณัฎฐิกา" }
+      { hint: "Tallest in the house", answer: "kjell" },
+      { hint: "Smelly fart and talk so much", answer: "bee" },
+      { hint: "Sleep and eat ", answer: "Spyzy" },
+      { hint: "play game and like wacht movie", answer: "gaemmy" },
+      { hint: "Easily startled", answer: "grand ma" },
+      { hint: "Huh? what you say?", answer: "grand pa" }
     ];
 
     let currentAnswer = "";
@@ -113,10 +113,10 @@
       currentAnswer = selected.answer;
       attemptsLeft = maxAttempts;
 
-      document.getElementById("hint").textContent = "ใบ้คำ: " + selected.hint;
+      document.getElementById("hint").textContent = "Guess the word: " + selected.hint;
       document.getElementById("guessInput").value = "";
       document.getElementById("result").textContent = "";
-      document.getElementById("attemptsLeft").textContent = `คุณมีโอกาสอีก ${attemptsLeft} ครั้ง`;
+      document.getElementById("attemptsLeft").textContent = `you have a chance ${attemptsLeft} time`;
       document.getElementById("showAnswer").textContent = "";
     }
 
@@ -125,13 +125,13 @@
       const result = document.getElementById("result");
 
       if (guess === "") {
-        result.textContent = "กรุณาพิมพ์คำตอบก่อนอีสัส";
+        result.textContent = "Plaease type your answer";
         result.style.color = "orange";
         return;
       }
 
       if (guess === currentAnswer) {
-        result.textContent = "ถูกต้องมึงเก่งมากจ้า! ยินดีด้วย🤓!";
+        result.textContent = "you got it broo slay";
         result.style.color = "green";
         document.getElementById("attemptsLeft").textContent = "";
         document.getElementById("showAnswer").textContent = "";
@@ -139,14 +139,14 @@
         attemptsLeft--;
 
         if (attemptsLeft > 0) {
-          result.textContent = "ผิด โง่อยู่โง่อย่าง ลองอีกครั้ง!";
+          result.textContent = "wrong";
           result.style.color = "red";
-          document.getElementById("attemptsLeft").textContent = `คุณมีโอกาสอีก ${attemptsLeft} ครั้ง`;
+          document.getElementById("attemptsLeft").textContent = `you have a chance ${attemptsLeft} chance`;
         } else {
-          result.textContent = "หมดโอกาสแล้ว!";
+          result.textContent = "No chance anymore!";
           result.style.color = "gray";
           document.getElementById("attemptsLeft").textContent = "";
-          document.getElementById("showAnswer").textContent = `คำตอบที่ถูกคือ: "${currentAnswer}"`;
+          document.getElementById("showAnswer").textContent = `The correct answer is: "${currentAnswer}"`;
         }
       }
 
